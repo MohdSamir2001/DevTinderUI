@@ -1,7 +1,12 @@
 import React from "react";
+import AppRoutes from "./routes/AppRoutes";
 
 const App = () => {
-  return <div className="bg-blue-600">Hello World</div>;
+  return (
+    <div>
+      <AppRoutes />
+    </div>
+  );
 };
 
 export default App;
