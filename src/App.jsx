@@ -3,7 +3,7 @@ import AppRoutes from "./routes/AppRoutes";
 
 const App = () => {
   return (
-    <div>
+    <div className="">
       <AppRoutes />
     </div>
   );

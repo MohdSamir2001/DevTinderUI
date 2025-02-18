@@ -9,6 +9,7 @@ const AppRoutes = () => {
     <div>
       <Routes>
         <Route path="/" element={<Body />}>
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
