@@ -7,6 +7,7 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogin = async () => {
@@ -22,7 +23,7 @@ const Login = () => {
       dispatch(addUser(res.data));
       navigate("/feed");
     } catch (err) {
-      console.error(err);
+      setError(err?.response?.data || "Something went wrong");
     }
   };
   return (
@@ -36,6 +37,7 @@ const Login = () => {
             className="p-4 outline-none font-semibold rounded-md mb-2"
             type="text"
             value={emailId}
+            onClick={() => setError("")}
             onChange={(e) => setEmailId(e.target.value)}
             placeholder="Enter your email..."
           />
@@ -44,8 +46,10 @@ const Login = () => {
             type="text"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            onClick={() => setError("")}
             placeholder="Enter your password..."
           />
+          <p className="font-semibold mt-2 text-sm text-red-500">{error}</p>
           <button
             onClick={handleLogin}
             className="p-4 btn btn-ghost mt-2 bg-violet-800  font-semibold rounded-md"
