@@ -1,25 +1,33 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:7860/login",
+        BASE_URL + "/login",
         {
           emailId,
           password,
         },
         { withCredentials: true }
       );
+      dispatch(addUser(res.data));
+      navigate("/feed");
     } catch (err) {
       console.error(err);
     }
   };
   return (
     <div className="flex h-96 justify-center items-center">
-      <div className="w-96 mt-28 py-8 px-4 rounded-md bg-black bg-opacity-10 flex justify-center flex-col ">
+      <div className="w-96 mt-28 py-8 px-4 rounded-lg bg-black bg-opacity-10 flex justify-center flex-col ">
         <h1 className="text-2xl font-semibold text-center mb-8">
           Login Here...
         </h1>
@@ -40,7 +48,7 @@ const Login = () => {
           />
           <button
             onClick={handleLogin}
-            className="p-4 btn btn-ghost mt-2 bg-black bg-opacity-60 font-semibold rounded-md"
+            className="p-4 btn btn-ghost mt-2 bg-violet-800  font-semibold rounded-md"
           >
             Login
           </button>
