@@ -20,7 +20,10 @@ const Navbar = () => {
   return (
     <div className="navbar px-6 bg-base-200">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost font-semibold text-2xl">
+        <Link
+          to={user ? "/" : "login"}
+          className="btn btn-ghost font-semibold text-2xl"
+        >
           DevTinderUI
         </Link>
       </div>
