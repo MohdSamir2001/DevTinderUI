@@ -17,7 +17,7 @@ const Requests = () => {
   };
   useEffect(() => {
     fetchAllRequests();
-  });
+  }, []);
   return allRequests.length === 0 ? (
     <p className="text-center text-gray-400">You have no requests yet.</p>
   ) : (
@@ -25,8 +25,24 @@ const Requests = () => {
       <h1 className="text-center font-semibold mb-4 text-3xl">
         My Requests...
       </h1>
-      {allRequests.map((request, index) => {
-        return <UserTile key={index} connection={request?.fromUserId} />;
+      {allRequests?.map((request) => {
+        console.log(request);
+        return (
+          <div
+            key={request?.fromUserId?._id}
+            className="flex items-start justify-center"
+          >
+            <UserTile connection={request?.fromUserId} />
+            <div className="flex gap-1 -mt-[4px]  rounded-md p-1 flex-col">
+              <button className="p-1 font-semibold bg-green-500 text-white flex items-center justify-center rounded-md">
+                Accepted
+              </button>
+              <button className="p-1  bg-red-600 text-white font-semibold flex items-center justify-center rounded-md">
+                Rejected
+              </button>
+            </div>
+          </div>
+        );
       })}
     </div>
   );
