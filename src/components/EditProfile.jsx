@@ -10,6 +10,8 @@ const EditProfile = ({ user }) => {
   const [skills, setSkills] = useState(user.skills);
   const [about, setAbout] = useState(user.about);
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender || "");
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
@@ -23,6 +25,8 @@ const EditProfile = ({ user }) => {
           photoUrl,
           about,
           skills,
+          age,
+          gender,
         },
         { withCredentials: true }
       );
@@ -76,6 +80,27 @@ const EditProfile = ({ user }) => {
             onChange={(e) => setSkills(e.target.value)}
             value={skills}
             type="text"
+          />
+
+          <label htmlFor="" className="font-semibold">
+            Gender:
+          </label>
+          <input
+            className="p-2 mb-2 outline-none font-semibold rounded-md"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            type="text-area"
+            placeholder=""
+          />
+          <label htmlFor="" className="font-semibold">
+            Age:
+          </label>
+          <input
+            className="p-2 mb-2 outline-none font-semibold rounded-md"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            type="text-area"
+            placeholder=""
           />
           <label htmlFor="" className="font-semibold">
             About:

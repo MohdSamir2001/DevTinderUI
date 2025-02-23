@@ -25,7 +25,7 @@ const UserCard = ({ user }) => {
       <img className=" w-full" src={photoUrl} alt="" />
       <div className="">
         <h1 className="text-center my-2 text-2xl">
-          {firstName + " " + lastName}
+          {firstName + " " + lastName + ` (${gender}) ${age}`}
         </h1>
         <h1 className="bg-base-200 border-b-[1px] text-center p-2">
           -- Skills --
