@@ -31,7 +31,12 @@ const Requests = () => {
     fetchAllRequests();
   }, []);
   return allRequests.length === 0 ? (
-    <p className="text-center text-gray-400">You have no requests yet.</p>
+    <div className="mt-4">
+      <h1 className="text-center font-semibold mb-4 text-3xl">
+        My Requests...
+      </h1>
+      <p className="text-center text-gray-400">You have no requests yet.</p>
+    </div>
   ) : (
     <div className="mt-4">
       <h1 className="text-center font-semibold mb-4 text-3xl">

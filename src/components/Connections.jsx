@@ -30,7 +30,9 @@ const Connections = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-center my-4">My Connections</h1>
+      <h1 className="text-center font-semibold my-4 text-3xl">
+        My Connections
+      </h1>
       {connections.length === 0 ? (
         <p className="text-center text-gray-400">
           You have no connections yet.
