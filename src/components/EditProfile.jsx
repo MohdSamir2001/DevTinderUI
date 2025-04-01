@@ -15,6 +15,7 @@ const EditProfile = ({ user }) => {
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
+
   const saveProfile = async () => {
     try {
       const res = await axios.patch(
@@ -39,102 +40,116 @@ const EditProfile = ({ user }) => {
       setError(err.response.data);
     }
   };
+
   return (
-    <div className="flex gap-2">
-      <div className="w-72 bg-base-300 p-4 rounded-lg">
-        <h1 className="text-2xl text-center m-4 font-semibold">Edit Profile</h1>
+    <div className="flex gap-4 justify-center">
+      <div className="w-80 bg-base-300 p-6 rounded-lg shadow-lg">
+        <h1 className="text-2xl text-center mb-4 font-semibold">
+          Edit Profile
+        </h1>
         <form onClick={(e) => e.preventDefault()} className="flex flex-col">
-          <label htmlFor="" className="font-semibold">
+          <label htmlFor="photoUrl" className="font-semibold">
             Photo URL:
           </label>
           <input
-            className="p-2 outline-none font-semibold rounded-md mb-2"
+            className="p-3 outline-none font-semibold rounded-md mb-4 "
             value={photoUrl}
             onChange={(e) => setPhotoUrl(e.target.value)}
             type="text"
           />
-          <label htmlFor="" className="font-semibold">
+
+          <label htmlFor="firstName" className="font-semibold">
             First Name:
           </label>
           <input
-            className="p-2 outline-none font-semibold rounded-md mb-2"
+            className="p-3 outline-none font-semibold rounded-md mb-4 "
             value={firstName}
             onClick={() => setError("")}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
           />
-          <label htmlFor="" className="font-semibold">
+
+          <label htmlFor="lastName" className="font-semibold">
             Last Name:
           </label>
           <input
-            className="p-2 mb-2 outline-none font-semibold rounded-md"
+            className="p-3 outline-none font-semibold rounded-md mb-4 "
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
           />
-          <label htmlFor="" className="font-semibold">
+
+          <label htmlFor="skills" className="font-semibold">
             Skills:
           </label>
           <input
-            className="p-2 mb-2 outline-none font-semibold rounded-md"
-            onChange={(e) => setSkills(e.target.value)}
+            className="p-3 outline-none font-semibold rounded-md mb-4 "
             value={skills}
+            onChange={(e) => setSkills(e.target.value)}
             type="text"
           />
 
-          <label htmlFor="" className="font-semibold">
+          <label htmlFor="gender" className="font-semibold">
             Gender:
           </label>
-          <input
-            className="p-2 mb-2 outline-none font-semibold rounded-md"
+          <select
+            className="p-3 outline-none font-semibold rounded-md mb-4 "
             value={gender}
             onChange={(e) => setGender(e.target.value)}
-            type="text-area"
-            placeholder=""
-          />
-          <label htmlFor="" className="font-semibold">
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+          </select>
+
+          <label htmlFor="age" className="font-semibold">
             Age:
           </label>
           <input
-            className="p-2 mb-2 outline-none font-semibold rounded-md"
+            className="p-3 outline-none font-semibold rounded-md mb-4 "
             value={age}
             onChange={(e) => setAge(e.target.value)}
-            type="text-area"
-            placeholder=""
+            type="number"
+            placeholder="Enter your age"
           />
-          <label htmlFor="" className="font-semibold">
+
+          <label htmlFor="about" className="font-semibold">
             About:
           </label>
           <textarea
-            className="p-2 mb-2 outline-none font-semibold rounded-md"
+            className="p-3 outline-none font-semibold rounded-md mb-4 "
             value={about}
             onChange={(e) => setAbout(e.target.value)}
-            type="text-area"
-            placeholder=""
+            placeholder="Tell us about yourself"
           />
+
           <p className="font-semibold text-sm text-red-500">{error}</p>
           <button
             onClick={saveProfile}
-            className="p-4 btn btn-ghost mt-2 bg-violet-800  font-semibold rounded-md"
+            className="p-4 mt-2 bg-violet-800 text-white font-semibold rounded-md shadow-md hover:bg-violet-600 transition duration-300"
           >
             Save Profile
           </button>
         </form>
       </div>
-      <div className="bg-base-200 w-72 rounded-md overflow-hidden font-semibold">
-        <img className="w-full" src={photoUrl} alt="" />
-        <div className="p-2">
+
+      <div className="bg-base-200 w-80 rounded-md shadow-md overflow-hidden font-semibold">
+        <img className="w-full h-96 object-fill" src={photoUrl} alt="Profile" />
+        <div className="p-4">
           <h1 className="text-center text-2xl">{firstName + " " + lastName}</h1>
-          <h1 className="bg-base-200 border-b-[1px] text-center p-2">
-            -- Skills --
-          </h1>
-          <h1 className="p-2">{skills}</h1>
-          <h1 className="bg-base-200 border-b-[1px] text-center p-2">
-            -- About --
-          </h1>
-          <h1 className="p-2">{about}</h1>
+          <div className="bg-base-200 border-b-[1px] text-center p-2">
+            <h2>Skills</h2>
+          </div>
+          <p className="p-2 text-center">{skills}</p>
+
+          <div className="bg-base-200 border-b-[1px] text-center p-2">
+            <h2>About</h2>
+          </div>
+          <p className="p-2">{about}</p>
         </div>
       </div>
+
       {showToast && (
         <div className="toast toast-top toast-end">
           <div className="alert alert-success">
