@@ -6,6 +6,7 @@ import Body from "../components/Body";
 import Feed from "../components/Feed";
 import Connections from "../components/Connections";
 import Requests from "../components/Requests";
+import Chat from "../components/Chat";
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Feed />} />
           <Route path="/login" element={<SignAndLogin />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/chat/:toTargetUser" element={<Chat />} />
           <Route path="/connections" element={<Connections />} />
           <Route path="/requests" element={<Requests />} />
         </Route>
