@@ -1,2 +1,4 @@
-export const BASE_URL =
-  "https://backdevtinder.onrender.com" || "http://localhost:7860";
+const isDev = window.location.hostname === "localhost";
+export const BASE_URL = isDev
+  ? "http://localhost:7860"
+  : "https://backdevtinder.onrender.com";
